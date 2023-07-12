@@ -12,9 +12,10 @@ import {
   Query,
   UsePipes,
 } from '@nestjs/common';
+import { Pet } from '@prisma/client';
 import { PetsService } from './pets.service';
 import { PaginatedList } from 'src/models/paginated-list.model';
-import { Pet, PetSchema } from './interfaces/pet.interface';
+import { PetSchema } from './schema/pet.schema';
 import { JoiValidationPipe } from 'src/joi-validation/joi-validation.pipe';
 
 @Controller('pets')
@@ -22,18 +23,18 @@ export class PetsController {
   constructor(private petsService: PetsService) {}
 
   @Get()
-  getMany(
+  async getMany(
     @Query('pageIndex', new DefaultValuePipe(1), ParseIntPipe)
     pageIndex: number,
     @Query('pageSize', new DefaultValuePipe(20), ParseIntPipe)
     pageSize: number,
-  ): PaginatedList<Pet> {
-    return this.petsService.getMany(pageIndex, pageSize);
+  ): Promise<PaginatedList<Pet>> {
+    return await this.petsService.getMany(pageIndex, pageSize);
   }
 
   @Get(':id')
-  getOne(@Param('id') id: string): Pet {
-    const pet = this.petsService.getOne(id);
+  async getOne(@Param('id') id: string): Promise<Pet> {
+    const pet = await this.petsService.getOne(id);
 
     if (!pet) {
       throw new NotFoundException();
@@ -44,14 +45,14 @@ export class PetsController {
 
   @Post()
   @UsePipes(new JoiValidationPipe(PetSchema))
-  post(@Body() pet: Pet): Pet {
-    return this.petsService.create(pet);
+  async post(@Body() pet: Pet): Promise<Pet> {
+    return await this.petsService.create(pet);
   }
 
   @Put(':id')
   @UsePipes(new JoiValidationPipe(PetSchema))
-  put(@Param('id') id: string, @Body() pet: Pet) {
-    const updated = this.petsService.update(id, pet);
+  async put(@Param('id') id: string, @Body() pet: Pet) {
+    const updated = await this.petsService.update(id, pet);
 
     if (!updated) {
       throw new NotFoundException();
@@ -59,8 +60,8 @@ export class PetsController {
   }
 
   @Delete(':id')
-  delete(@Param('id') id: string) {
-    const deleted = this.petsService.delete(id);
+  async delete(@Param('id') id: string) {
+    const deleted = await this.petsService.delete(id);
 
     if (!deleted) {
       throw new NotFoundException();
