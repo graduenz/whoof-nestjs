@@ -12,11 +12,8 @@ export class PetsService {
   }
 
   getMany(pageIndex: number, pageSize: number): PaginatedList<Pet> {
-    console.log(this.pets);
     const startsAt = (pageIndex - 1) * pageSize;
-    console.log(startsAt);
     const endsAt = startsAt + pageSize;
-    console.log(endsAt);
 
     return new PaginatedList<Pet>(
       this.pets.slice(startsAt, endsAt),
