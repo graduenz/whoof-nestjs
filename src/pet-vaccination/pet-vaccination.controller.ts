@@ -18,7 +18,7 @@ import { PaginatedList } from 'src/models/paginated-list.model';
 import { PetVaccinationSchema } from './pet-vaccination.schema';
 import { JoiValidationPipe } from 'src/joi-validation/joi-validation.pipe';
 
-@Controller('petVaccination-vaccination')
+@Controller('pet-vaccination')
 export class PetVaccinationController {
   constructor(private petVaccinationsService: PetVaccinationService) {}
 
