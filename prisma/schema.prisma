@@ -11,7 +11,33 @@ datasource db {
 }
 
 model Pet {
-  id   String @id
-  name String @unique
-  type Int
+  id          String @id
+  name        String @unique
+  petType     PetType
+  vaccination PetVaccination[]
+}
+
+model Vaccine {
+  id          String @id
+  name        String @unique
+  description String?
+  petType     PetType
+  duration    Int
+  vaccination PetVaccination[]
+}
+
+model PetVaccination {
+  pet       Pet @relation(fields: [petId], references: [id])
+  petId     String
+  vaccine   Vaccine @relation(fields: [vaccineId], references: [id])
+  vaccineId String
+
+  @@id([petId, vaccineId])
+}
+
+enum PetType {
+  DOG
+  CAT
+  CAPYBARA
+  OTHER
 }
