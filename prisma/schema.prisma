@@ -27,12 +27,12 @@ model Vaccine {
 }
 
 model PetVaccination {
+  id        String @id
   pet       Pet @relation(fields: [petId], references: [id])
   petId     String
   vaccine   Vaccine @relation(fields: [vaccineId], references: [id])
   vaccineId String
-
-  @@id([petId, vaccineId])
+  appliedAt DateTime
 }
 
 enum PetType {
