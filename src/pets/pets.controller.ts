@@ -15,7 +15,7 @@ import {
 import { Pet } from '@prisma/client';
 import { PetsService } from './pets.service';
 import { PaginatedList } from 'src/models/paginated-list.model';
-import { PetSchema } from './schema/pet.schema';
+import { PetSchema } from './pet.schema';
 import { JoiValidationPipe } from 'src/joi-validation/joi-validation.pipe';
 
 @Controller('pets')
