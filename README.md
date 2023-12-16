@@ -3,7 +3,7 @@ whoof-nestjs
 
 ## Description
 
-Implementation of [Whoof API](https://gui.rdnz.dev/_/labs/whoof-api) using NestJS.
+Implementation of [Whoof API](https://gui.rdnz.dev/labs/whoof-api) using NestJS.
 
 ## Milestones
 
