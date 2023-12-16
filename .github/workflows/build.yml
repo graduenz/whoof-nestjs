@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Run tests and generate coverage report
-        run: pnpm run test:cov
+        run: pnpm run test:cov --runInBand
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
