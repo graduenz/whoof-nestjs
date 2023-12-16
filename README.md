@@ -11,8 +11,9 @@ Implementation of [Whoof API](https://gui.rdnz.dev/_/labs/whoof-api) using NestJ
 - [x] PostgreSQL with Prisma
 - [x] REST schema validation
 - [x] Swagger
-- [ ] Tests
-- [ ] SonarCloud
+- [ ] Unit tests
+- [ ] E2E tests
+- [x] SonarCloud + coverage report
 - [ ] Adequate logging
 - [ ] CI/CD with GitHub Actions
 - [ ] Launch
