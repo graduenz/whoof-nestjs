@@ -29,6 +29,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
+      - name: Generate Prisma client
+        run: pnpm run prisma:generate
       - name: Run tests and generate coverage report
         run: pnpm run test:cov --runInBand
       - name: SonarCloud Scan
