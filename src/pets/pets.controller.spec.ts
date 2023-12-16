@@ -4,6 +4,7 @@ import { PetsService } from './pets.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { PaginatedList } from 'src/models/paginated-list.model';
 import { $Enums, Pet } from '@prisma/client';
+import { NotFoundException } from '@nestjs/common';
 
 describe('PetsController', () => {
   let controller: PetsController;
@@ -69,6 +70,16 @@ describe('PetsController', () => {
     });
   });
 
+  describe('getOne', () => {
+    it('should throw when a pet by id is not found', async () => {
+      const id = '1';
+
+      jest.spyOn(service, 'getOne').mockResolvedValue(undefined);
+
+      expect(controller.getOne(id)).rejects.toThrowError(NotFoundException);
+    });
+  });
+
   describe('post', () => {
     it('should create a new pet', async () => {
       const pet: Pet = {
@@ -103,6 +114,23 @@ describe('PetsController', () => {
     });
   });
 
+  describe('put', () => {
+    it('should throw when a pet by id is not found', async () => {
+      const id = '1';
+      const pet: Pet = {
+        id: '1',
+        name: 'Eminem',
+        petType: $Enums.PetType.DOG,
+      };
+
+      jest.spyOn(service, 'update').mockResolvedValue(false);
+
+      expect(controller.put(id, pet)).rejects.toThrowError(NotFoundException);
+
+      expect(service.update).toHaveBeenCalledWith(id, pet);
+    });
+  });
+
   describe('delete', () => {
     it('should delete a pet by id', async () => {
       const id = '1';
@@ -110,6 +138,18 @@ describe('PetsController', () => {
       jest.spyOn(service, 'delete').mockResolvedValue(true);
 
       await controller.delete(id);
+
+      expect(service.delete).toHaveBeenCalledWith(id);
+    });
+  });
+
+  describe('delete', () => {
+    it('should throw when a pet by id is not found', async () => {
+      const id = '1';
+
+      jest.spyOn(service, 'delete').mockResolvedValue(false);
+
+      expect(controller.delete(id)).rejects.toThrowError(NotFoundException);
 
       expect(service.delete).toHaveBeenCalledWith(id);
     });
