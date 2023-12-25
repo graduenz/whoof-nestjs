@@ -21,7 +21,7 @@ describe('VaccinesService', () => {
   });
 
   describe('getOne', () => {
-    it('should return a vaccine by id', async () => {
+    it('should return a vaccine by ID', async () => {
       const vaccineId = 'vaccine-id';
       const expectedVaccine: Vaccine = {
         id: vaccineId,
