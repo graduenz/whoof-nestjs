@@ -99,7 +99,7 @@ describe('VaccinesService', () => {
   });
 
   describe('create', () => {
-    it('should create a new vaccine', async () => {
+    it('should create a new vaccine with specified ID', async () => {
       const newVaccine: Vaccine = {
         id: 'new-vaccine-id',
         name: 'COVID-19 Vaccine',
@@ -116,6 +116,29 @@ describe('VaccinesService', () => {
       const result = await service.create(newVaccine);
 
       expect(result).toEqual(expectedCreatedVaccine);
+      expect(prismaService.vaccine.create).toHaveBeenCalledWith({
+        data: newVaccine,
+      });
+    });
+
+    it('should create a new vaccine without an ID', async () => {
+      const newVaccine: Vaccine = {
+        id: null,
+        name: 'COVID-19 Vaccine',
+        description: 'A vaccine for COVID-19',
+        duration: 360,
+        petType: $Enums.PetType.DOG,
+      };
+      const expectedCreatedVaccine: Vaccine = { ...newVaccine };
+
+      jest
+        .spyOn(prismaService.vaccine, 'create')
+        .mockResolvedValue(expectedCreatedVaccine);
+
+      const result = await service.create(newVaccine);
+
+      expect(result).toEqual({ ...expectedCreatedVaccine, id: result.id });
+      expect(result.id).not.toBeNull();
       expect(prismaService.vaccine.create).toHaveBeenCalledWith({
         data: newVaccine,
       });
