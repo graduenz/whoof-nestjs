@@ -54,7 +54,7 @@ describe('PetsController', () => {
   });
 
   describe('getOne', () => {
-    it('should return a pet by id', async () => {
+    it('should return a pet by ID', async () => {
       const id = '1';
       const expectedPet: Pet = {
         id,
@@ -68,10 +68,8 @@ describe('PetsController', () => {
 
       expect(result).toEqual(expectedPet);
     });
-  });
 
-  describe('getOne', () => {
-    it('should throw when a pet by id is not found', async () => {
+    it('should throw when a pet by ID is not found', async () => {
       const id = '1';
 
       jest.spyOn(service, 'getOne').mockResolvedValue(undefined);
@@ -98,7 +96,7 @@ describe('PetsController', () => {
   });
 
   describe('put', () => {
-    it('should update a pet by id', async () => {
+    it('should update a pet by ID', async () => {
       const id = '1';
       const pet: Pet = {
         id: '1',
@@ -112,10 +110,8 @@ describe('PetsController', () => {
 
       expect(service.update).toHaveBeenCalledWith(id, pet);
     });
-  });
 
-  describe('put', () => {
-    it('should throw when a pet by id is not found', async () => {
+    it('should throw when a pet by ID is not found', async () => {
       const id = '1';
       const pet: Pet = {
         id: '1',
@@ -132,7 +128,7 @@ describe('PetsController', () => {
   });
 
   describe('delete', () => {
-    it('should delete a pet by id', async () => {
+    it('should delete a pet by ID', async () => {
       const id = '1';
 
       jest.spyOn(service, 'delete').mockResolvedValue(true);
@@ -141,10 +137,8 @@ describe('PetsController', () => {
 
       expect(service.delete).toHaveBeenCalledWith(id);
     });
-  });
 
-  describe('delete', () => {
-    it('should throw when a pet by id is not found', async () => {
+    it('should throw when a pet by ID is not found', async () => {
       const id = '1';
 
       jest.spyOn(service, 'delete').mockResolvedValue(false);
