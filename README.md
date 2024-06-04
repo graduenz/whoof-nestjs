@@ -12,7 +12,7 @@ whoof-nestjs
 
 ## Description
 
-Implementation of [Whoof API](https://gui.rdnz.dev/labs/whoof-api) using NestJS, Prisma and PostgreSQL.
+Implementation of [Whoof API](https://rdnz.dev/labs/whoof/) using NestJS, Prisma and PostgreSQL.
 
 ## Milestones
 
