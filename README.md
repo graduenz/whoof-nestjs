@@ -1,6 +1,8 @@
 whoof-nestjs
 ---
 
+> **Update:** This project is part of [Whoof](https://rdnz.dev/labs/whoof/) and it will not be worked on anymore.
+
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=graduenz_whoof-nestjs&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=graduenz_whoof-nestjs)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=graduenz_whoof-nestjs&metric=bugs)](https://sonarcloud.io/summary/new_code?id=graduenz_whoof-nestjs)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=graduenz_whoof-nestjs&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=graduenz_whoof-nestjs)
@@ -10,7 +12,7 @@ whoof-nestjs
 
 ## Description
 
-Implementation of [Whoof API](https://gui.rdnz.dev/labs/whoof-api) using NestJS.
+Implementation of [Whoof API](https://gui.rdnz.dev/labs/whoof-api) using NestJS, Prisma and PostgreSQL.
 
 ## Milestones
 
